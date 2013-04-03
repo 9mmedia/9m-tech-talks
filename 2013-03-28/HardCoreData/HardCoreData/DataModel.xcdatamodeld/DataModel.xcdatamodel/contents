@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Album" representedClassName="Album" parentEntity="RdioObject" syncable="YES">
+        <attribute name="imageLink" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="artist" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="albums" inverseEntity="Artist" syncable="YES"/>
+        <relationship name="rankings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AlbumRanking" inverseName="album" inverseEntity="AlbumRanking" syncable="YES"/>
+        <relationship name="tracks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="album" inverseEntity="Track" syncable="YES"/>
+    </entity>
+    <entity name="AlbumRanking" representedClassName="AlbumRanking" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="rank" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="album" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="rankings" inverseEntity="Album" syncable="YES"/>
+    </entity>
+    <entity name="Artist" representedClassName="Artist" parentEntity="RdioObject" syncable="YES">
+        <relationship name="albums" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Album" inverseName="artist" inverseEntity="Album" syncable="YES"/>
+        <relationship name="tracks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Track" inverseName="artist" inverseEntity="Track" syncable="YES"/>
+    </entity>
+    <entity name="RdioObject" representedClassName="RdioObject" isAbstract="YES" syncable="YES">
+        <attribute name="key" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updated" optional="YES" attributeType="Date" syncable="YES"/>
+    </entity>
+    <entity name="Track" representedClassName="Track" parentEntity="RdioObject" syncable="YES">
+        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="album" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Album" inverseName="tracks" inverseEntity="Album" syncable="YES"/>
+        <relationship name="artist" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Artist" inverseName="tracks" inverseEntity="Artist" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Album" positionX="-90" positionY="-154" width="128" height="103"/>
+        <element name="AlbumRanking" positionX="-306" positionY="-160" width="128" height="88"/>
+        <element name="Artist" positionX="-306" positionY="-508" width="128" height="73"/>
+        <element name="RdioObject" positionX="-144" positionY="-324" width="234" height="88"/>
+        <element name="Track" positionX="126" positionY="-514" width="128" height="88"/>
+    </elements>
+</model>
